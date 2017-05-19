@@ -1,0 +1,2 @@
+xmcUrl,gatewayIp,port,terminalNumber,loginName,password,additionalId,merchantId,terminalNumber2,terminalNumber3,MerchantName,MerchantPassword
+https://cgpay5.creditguard.co.il:8016,172.17.100.174,7790,0962831,talm,Zz123123.,,CG-00001,0962922,0000704,,

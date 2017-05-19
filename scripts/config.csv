@@ -1,0 +1,2 @@
+xmcUrl,gatewayIp,port,terminalNumber,loginName,password,additionalId,merchantId,terminalNumber2,terminalNumber3,MerchantName,MerchantPassword,xmcUser,xmcPass,xmcId
+https://one1t.creditguard.co.il:8016,,,Disabled,cgadmin,Admin123.,111111,,,,jmt10052,Admin123.,,,

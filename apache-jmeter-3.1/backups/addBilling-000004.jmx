@@ -1,0 +1,1615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="3.1" jmeter="3.1 r1770033">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="addBilling" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1384320557000</longProp>
+        <longProp name="ThreadGroup.end_time">1384320557000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="basic config" enabled="true">
+          <stringProp name="filename">C:\Users\talm.CREDITGUARD\Desktop\Jmeter\scripts\config.csv</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <stringProp name="variableNames"></stringProp>
+          <stringProp name="delimiter">,</stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="XMC command" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${xmcUrl}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+          <stringProp name="TestPlan.comments">		</stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">4</stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+          <collectionProp name="CookieManager.cookies"/>
+          <boolProp name="CookieManager.clearEachIteration">true</boolProp>
+          <stringProp name="CookieManager.policy">rfc2109</stringProp>
+        </CookieManager>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="login" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/login</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;
+        &lt;loginRequest&gt;
+                &lt;command&gt;login&lt;/command&gt;
+                &lt;language&gt;HEB&lt;/language&gt;
+                &lt;version&gt;1000&lt;/version&gt;
+                &lt;login&gt;
+                        &lt;loginName&gt;${loginName}&lt;/loginName&gt;
+                        &lt;password&gt;${password}&lt;/password&gt;
+                        &lt;additionalId&gt;${additionalId}&lt;/additionalId&gt;
+                &lt;/login&gt;
+        &lt;/loginRequest&gt;
+&lt;/ashraitXMC&gt;
+
+
+
+</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="false">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">session</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;session&gt;([^&lt;]+)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NOT FOUND</stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="write session to a file" enabled="false">
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="script">session = vars.get(&quot;session&quot;);
+
+
+// Pass true if you want to append to existing file
+// If you want to overwrite, then don&apos;t pass the second argument
+f = new FileOutputStream(&quot;c:/scripts/session.csv&quot;);
+p = new PrintStream(f); 
+this.interpreter.setOut(p); 
+print(&quot;session\n&quot; + session);
+
+f.close();</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="get session" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">session</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;session&gt;([^&lt;]+)</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NOT FOUND</stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateBilling" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplate&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplate&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;type&gt;2&lt;/type&gt;&lt;typeText&gt;לפי מיקום&lt;/typeText&gt;&lt;module&gt;ashraitBilling&lt;/module&gt;&lt;moduleText&gt;CG בילינג&lt;/moduleText&gt;&lt;subModule&gt;&lt;/subModule&gt;&lt;countCols&gt;&lt;/countCols&gt;&lt;namePattern&gt;c*&lt;/namePattern&gt;&lt;delimiter&gt;&lt;/delimiter&gt;&lt;headersNum&gt;1&lt;/headersNum&gt;&lt;trailersNum&gt;0&lt;/trailersNum&gt;&lt;fileGetType&gt;local&lt;/fileGetType&gt;&lt;fileGetHost&gt;&lt;/fileGetHost&gt;&lt;fileGetPort&gt;&lt;/fileGetPort&gt;&lt;fileGetUser&gt;&lt;/fileGetUser&gt;&lt;fileGetPassword&gt;&lt;/fileGetPassword&gt;&lt;fileInPath&gt;/usr/local/shva/fileManager/talm/input/billing&lt;/fileInPath&gt;&lt;fileInZip&gt;0&lt;/fileInZip&gt;&lt;fileInZipText&gt;לא&lt;/fileInZipText&gt;&lt;fileUnique&gt;0&lt;/fileUnique&gt;&lt;fileUniqueText&gt;לא&lt;/fileUniqueText&gt;&lt;fileDelete&gt;1&lt;/fileDelete&gt;&lt;fileDeleteText&gt;כן&lt;/fileDeleteText&gt;&lt;fileOutPath&gt;/usr/local/shva/fileManager/talm/output/billing&lt;/fileOutPath&gt;&lt;fileOutZip&gt;0&lt;/fileOutZip&gt;&lt;fileOutZipText&gt;לא&lt;/fileOutZipText&gt;&lt;merchantId&gt;CG-00005&lt;/merchantId&gt;&lt;merchantIdText&gt;CG-00005&lt;/merchantIdText&gt;&lt;dbTableName&gt;&lt;/dbTableName&gt;&lt;/addFileTemplate&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColauthNumber" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;authNumber&lt;/colId&gt;&lt;description&gt;authNumber&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;47&lt;/startPos&gt;&lt;endPos&gt;53&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColcardExpiration" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;cardExpiration&lt;/colId&gt;&lt;description&gt;card expiration - if working with card number&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;40&lt;/startPos&gt;&lt;endPos&gt;43&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColcardId" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;cardId&lt;/colId&gt;&lt;description&gt;cardId or card number&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;24&lt;/startPos&gt;&lt;endPos&gt;39&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColclientBillingId" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;clientBillingId&lt;/colId&gt;&lt;description&gt;helps mapping between client id and CG billing id&lt;/description&gt;&lt;lineType&gt;h&lt;/lineType&gt;&lt;type&gt;number&lt;/type&gt;&lt;lineIndex&gt;1&lt;/lineIndex&gt;&lt;startPos&gt;54&lt;/startPos&gt;&lt;endPos&gt;72&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColcreditType" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;creditType&lt;/colId&gt;&lt;description&gt;creditType&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;46&lt;/startPos&gt;&lt;endPos&gt;46&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColcurrency" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;currency&lt;/colId&gt;&lt;description&gt;currency&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;number&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;23&lt;/startPos&gt;&lt;endPos&gt;23&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColfileDate" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;fileDate&lt;/colId&gt;&lt;description&gt;file date&lt;/description&gt;&lt;lineType&gt;h&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;1&lt;/lineIndex&gt;&lt;startPos&gt;10&lt;/startPos&gt;&lt;endPos&gt;21&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColfiller1" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;filler1&lt;/colId&gt;&lt;description&gt;filler 1&lt;/description&gt;&lt;lineType&gt;h&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;1&lt;/lineIndex&gt;&lt;startPos&gt;3&lt;/startPos&gt;&lt;endPos&gt;9&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColfiller2" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;filler2&lt;/colId&gt;&lt;description&gt;filler 2&lt;/description&gt;&lt;lineType&gt;h&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;1&lt;/lineIndex&gt;&lt;startPos&gt;22&lt;/startPos&gt;&lt;endPos&gt;46&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColfiller3" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;filler3&lt;/colId&gt;&lt;description&gt;filler 3&lt;/description&gt;&lt;lineType&gt;h&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;1&lt;/lineIndex&gt;&lt;startPos&gt;73&lt;/startPos&gt;&lt;endPos&gt;93&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColfirstPayment" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;firstPayment&lt;/colId&gt;&lt;description&gt;first Payment&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;number&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;93&lt;/startPos&gt;&lt;endPos&gt;100&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColidNumber" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;idNumber&lt;/colId&gt;&lt;description&gt;idNumber&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;73&lt;/startPos&gt;&lt;endPos&gt;81&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateCollineTypeB" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;lineTypeB&lt;/colId&gt;&lt;description&gt;line type&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;0&lt;/startPos&gt;&lt;endPos&gt;2&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateCollineTypeH" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;lineTypeH&lt;/colId&gt;&lt;description&gt;Record type&lt;/description&gt;&lt;lineType&gt;h&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;1&lt;/lineIndex&gt;&lt;startPos&gt;0&lt;/startPos&gt;&lt;endPos&gt;2&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColnumberOfPayments" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;numberOfPayments&lt;/colId&gt;&lt;description&gt;number Of Payments&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;number&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;109&lt;/startPos&gt;&lt;endPos&gt;111&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColperiodicalPayment" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;periodicalPayment&lt;/colId&gt;&lt;description&gt;periodical Payment&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;number&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;101&lt;/startPos&gt;&lt;endPos&gt;108&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColterminalNumber" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;terminalNumber&lt;/colId&gt;&lt;description&gt;terminal number&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;3&lt;/startPos&gt;&lt;endPos&gt;9&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColtotal" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;total&lt;/colId&gt;&lt;description&gt;total&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;number&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;10&lt;/startPos&gt;&lt;endPos&gt;22&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColtransactionType" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;transactionType&lt;/colId&gt;&lt;description&gt;transactionType&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;44&lt;/startPos&gt;&lt;endPos&gt;45&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColtransCount" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;transCount&lt;/colId&gt;&lt;description&gt;total transactions in file&lt;/description&gt;&lt;lineType&gt;h&lt;/lineType&gt;&lt;type&gt;number&lt;/type&gt;&lt;lineIndex&gt;1&lt;/lineIndex&gt;&lt;startPos&gt;47&lt;/startPos&gt;&lt;endPos&gt;53&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColvalidation" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;validation&lt;/colId&gt;&lt;description&gt;j code&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;number&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;90&lt;/startPos&gt;&lt;endPos&gt;92&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColxField" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;xField&lt;/colId&gt;&lt;description&gt;id&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;string&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;54&lt;/startPos&gt;&lt;endPos&gt;72&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addFileTemplateColzField" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addFileTemplateCol&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addFileTemplateCol&gt;&lt;fileTemplateId&gt;ashraitBilling_CG-00005&lt;/fileTemplateId&gt;&lt;colId&gt;zField&lt;/colId&gt;&lt;description&gt;z field&lt;/description&gt;&lt;lineType&gt;b&lt;/lineType&gt;&lt;type&gt;number&lt;/type&gt;&lt;lineIndex&gt;0&lt;/lineIndex&gt;&lt;startPos&gt;82&lt;/startPos&gt;&lt;endPos&gt;89&lt;/endPos&gt;&lt;trimtype&gt;0&lt;/trimtype&gt;&lt;format&gt;&lt;/format&gt;&lt;/addFileTemplateCol&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

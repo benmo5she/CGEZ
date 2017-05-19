@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.5" jmeter="2.10 r1533061">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="manageTerminals" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1384320557000</longProp>
+        <longProp name="ThreadGroup.end_time">1384320557000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="basic config" enabled="true">
+          <stringProp name="filename">../../../scripts/config.csv</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <stringProp name="variableNames"></stringProp>
+          <stringProp name="delimiter">,</stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="session" enabled="true">
+          <stringProp name="filename">../../../resources/session.csv</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <stringProp name="variableNames"></stringProp>
+          <stringProp name="delimiter">,</stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="false">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="loginName" elementType="Argument">
+              <stringProp name="Argument.name">loginName</stringProp>
+              <stringProp name="Argument.value">cgadmin</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="password" elementType="Argument">
+              <stringProp name="Argument.name">password</stringProp>
+              <stringProp name="Argument.value">Admin123.</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="additionalId" elementType="Argument">
+              <stringProp name="Argument.name">additionalId</stringProp>
+              <stringProp name="Argument.value">111111</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="XMC command" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${xmcUrl}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+          <stringProp name="TestPlan.comments">		</stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">4</stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+          <collectionProp name="CookieManager.cookies"/>
+          <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+        </CookieManager>
+        <hashTree/>
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="card numbers" enabled="true">
+          <stringProp name="filename">../../../resources/cards.csv</stringProp>
+          <stringProp name="fileEncoding"></stringProp>
+          <stringProp name="variableNames"></stringProp>
+          <stringProp name="delimiter">,</stringProp>
+          <boolProp name="quotedData">false</boolProp>
+          <boolProp name="recycle">true</boolProp>
+          <boolProp name="stopThread">false</boolProp>
+          <stringProp name="shareMode">shareMode.all</stringProp>
+        </CSVDataSet>
+        <hashTree/>
+        <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
+          <stringProp name="maximumValue">100000</stringProp>
+          <stringProp name="minimumValue">100</stringProp>
+          <stringProp name="outputFormat"></stringProp>
+          <boolProp name="perThread">false</boolProp>
+          <stringProp name="randomSeed"></stringProp>
+          <stringProp name="variableName">random</stringProp>
+        </RandomVariableConfig>
+        <hashTree/>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="getUserTerminals" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;getUserTerminals&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;getUserTerminals&gt;&lt;userName&gt;&lt;/userName&gt;&lt;terminalNumber&gt;&lt;/terminalNumber&gt;&lt;status&gt;&lt;/status&gt;&lt;pageNumber&gt;1&lt;/pageNumber&gt;&lt;pagesAmount&gt;&lt;/pagesAmount&gt;&lt;fileName&gt;&lt;/fileName&gt;&lt;rowsTotal&gt;&lt;/rowsTotal&gt;&lt;/getUserTerminals&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="getTerminalUsersPermission" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;getTerminalUsersPermission&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;getTerminalUsersPermission&gt;&lt;selected&gt;1&lt;/selected&gt;&lt;terminalNumber&gt;&lt;/terminalNumber&gt;&lt;/getTerminalUsersPermission&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;
+</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="addTerminals" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">[changeme]&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;addTerminals&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;addTerminals&gt;&lt;fromTerminalNumber&gt;${terminalNumber}&lt;/fromTerminalNumber&gt;&lt;toTerminalNumber&gt;&lt;/toTerminalNumber&gt;&lt;terminalName&gt;testing &lt;/terminalName&gt;&lt;doDealLock&gt;0&lt;/doDealLock&gt;&lt;sectorId&gt;&lt;/sectorId&gt;&lt;allowDebit&gt;1&lt;/allowDebit&gt;&lt;allowCredit&gt;1&lt;/allowCredit&gt;&lt;doubleRecordCheck&gt;0&lt;/doubleRecordCheck&gt;&lt;receiptTitle&gt;&lt;/receiptTitle&gt;&lt;merchantTitle1&gt;&lt;/merchantTitle1&gt;&lt;merchantTitle2&gt;&lt;/merchantTitle2&gt;&lt;xFieldHName&gt;&lt;/xFieldHName&gt;&lt;xFieldEName&gt;&lt;/xFieldEName&gt;&lt;mainTerminalNumber&gt;&lt;/mainTerminalNumber&gt;&lt;canRavMutav&gt;0&lt;/canRavMutav&gt;&lt;blockedCards&gt;&lt;/blockedCards&gt;&lt;transmitLock&gt;0&lt;/transmitLock&gt;&lt;maxRecordsInFile&gt;&lt;/maxRecordsInFile&gt;&lt;autoTransmit&gt;0&lt;/autoTransmit&gt;&lt;autoTransmitTime&gt;&lt;/autoTransmitTime&gt;&lt;monitorTerminal&gt;0&lt;/monitorTerminal&gt;&lt;debugState&gt;no&lt;/debugState&gt;&lt;debugCeiling&gt;&lt;/debugCeiling&gt;&lt;users&gt;&lt;user&gt;&lt;loginName&gt;${loginName}&lt;/loginName&gt;&lt;userTypeText&gt;ֳ&lt;/userTypeText&gt;&lt;userEnable&gt;1&lt;/userEnable&gt;&lt;userDetails&gt;&lt;/userDetails&gt;&lt;/user&gt;&lt;/users&gt;&lt;/addTerminals&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;
+</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="getTerminalConfig" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;getTerminalConfig&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;getTerminalConfig&gt;&lt;terminalNumber&gt;${terminalNumber}&lt;/terminalNumber&gt;&lt;module&gt;ashrait&lt;/module&gt;&lt;/getTerminalConfig&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">groups</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;groups&gt;(.*)&lt;/groups&gt;</stringProp>
+            <stringProp name="RegexExtractor.template"></stringProp>
+            <stringProp name="RegexExtractor.default"></stringProp>
+            <stringProp name="RegexExtractor.match_number"></stringProp>
+          </RegexExtractor>
+          <hashTree/>
+        </hashTree>
+        <SoapSampler guiclass="SoapSamplerGui" testclass="SoapSampler" testname="updateTerminalConfig" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="SoapSampler.URL_DATA">${xmcUrl}/ashraitXMC/command</stringProp>
+          <stringProp name="HTTPSamper.xml_data">&lt;ashraitXMC&gt;&lt;commandRequest&gt;&lt;command&gt;updateTerminalConfig&lt;/command&gt;&lt;version&gt;1000&lt;/version&gt;&lt;session&gt;${session}&lt;/session&gt;&lt;language&gt;HEB&lt;/language&gt;&lt;updateTerminalConfig&gt;&lt;terminalNumber&gt;${terminalNumber}&lt;/terminalNumber&gt;&lt;module&gt;ashrait&lt;/module&gt;&lt;groups&gt;${groups}&lt;/groups&gt;&lt;/updateTerminalConfig&gt;&lt;/commandRequest&gt;&lt;/ashraitXMC&gt;</stringProp>
+          <stringProp name="SoapSampler.xml_data_file"></stringProp>
+          <stringProp name="SoapSampler.SOAP_ACTION"></stringProp>
+          <stringProp name="SoapSampler.SEND_SOAP_ACTION">false</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+        </SoapSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-1626129356">&lt;responseType&gt;Success&lt;/responseType&gt;</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <XMLAssertion guiclass="XMLAssertionGui" testclass="XMLAssertion" testname="XML Assertion" enabled="true"/>
+          <hashTree/>
+        </hashTree>
+        <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="Assertion Results" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <url>true</url>
+              <fileName>true</fileName>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>false</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>false</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <url>true</url>
+              <fileName>true</fileName>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
